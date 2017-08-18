@@ -1,0 +1,6 @@
+framework module JSPictureViewer {
+  umbrella header "JSPictureViewer-umbrella.h"
+
+  export *
+  module * { export * }
+}
