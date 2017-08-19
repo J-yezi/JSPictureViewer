@@ -45,6 +45,7 @@ public protocol JSPictureViewerDelegate: class {
 
 /// 因为现在默认是实现了这些方法都表明这些方法是可选的
 extension JSPictureViewerDelegate {
+    func animationRect(index: Int) -> CGRect? { return nil }
     func animationSize(index: Int) -> CGSize? { return nil }
     func placeholderImage(_ index: Int) -> UIImage? { return nil }
     func changeViewerImage(old: Int, new: Int) {}
@@ -193,8 +194,6 @@ extension JSPictureViewer {
     }
     
 }
-
-/// 预先加载旁边的图片
 
 extension JSPictureViewer: UICollectionViewDelegate, UICollectionViewDataSource {
     

@@ -46,14 +46,14 @@ class JSPictureCell: UICollectionViewCell {
         }
     }
     var indexPath: IndexPath!
-    var url: String! {
+    var url: String? {
         didSet {
             /// 让进度条有一点显示
             progressView.isHidden = false
             progressView.progress = 0.05
             
             imageView.yy_cancelCurrentImageRequest()
-            imageView.yy_setImage(with: URL(string: url)!, placeholder: placeholderImage, options: .showNetworkActivity, progress: { [weak self] receivedSize, expectedSize in
+            imageView.yy_setImage(with: URL(string: url!)!, placeholder: placeholderImage, options: .showNetworkActivity, progress: { [weak self] receivedSize, expectedSize in
                 self?.progressView.progress = max(CGFloat(receivedSize) / CGFloat(expectedSize), 0.05)
             }, transform: nil) { [weak self] image, url, fromType, stage, error in
                 if error != nil {
@@ -169,8 +169,10 @@ extension JSPictureCell {
     
     @objc fileprivate func close() {
         offset = .zero
-        progressView.isHidden = true
-        imageView.yy_cancelCurrentImageRequest()
+        if let _ = url {
+            progressView.isHidden = true
+            imageView.yy_cancelCurrentImageRequest()
+        }
         delegate?.closeDisplay(cell: self)
     }
     
@@ -247,8 +249,10 @@ extension JSPictureCell: UIScrollViewDelegate {
                 /// 这个地方会触发多次调用
                 if isClose {
                     isClose = false
-                    progressView.isHidden = true
-                    imageView.yy_cancelCurrentImageRequest()
+                    if let _ = url {
+                        progressView.isHidden = true
+                        imageView.yy_cancelCurrentImageRequest()
+                    }
                     scrollView.setContentOffset(offset, animated: false)
                     delegate?.closeDisplay(cell: self)
                 }

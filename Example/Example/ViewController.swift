@@ -30,9 +30,6 @@ class ViewController: UIViewController {
         collectionView.backgroundColor = UIColor.white
         collectionView.delegate = self
         collectionView.dataSource = self
-//        if #available(iOS 11.0, *) {
-//            collectionView.contentInsetAdjustmentBehavior = .never
-//        }
         return collectionView
     }()
     var a: JSPictureViewer?
