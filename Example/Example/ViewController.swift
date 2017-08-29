@@ -71,9 +71,9 @@ class ViewController: UIViewController {
             JSPictureConfig(url: "http://cdn.ruguoapp.com/FnfXm5YjJpDVzIXISNYT6-tTmd-E?imageView2/0/h/1000/interlace/0", image: nil),
             JSPictureConfig(url: "http://cdn.ruguoapp.com/o_1ak2n0vnrpl3jhdcv01s7cuta1.jpeg?imageView2/0/h/1000/interlace/0", image: nil)]
         
-                imageSource = (1...29).map {
-                    JSPictureConfig(image: UIImage(contentsOfFile: Bundle.main.path(forResource: "\($0).JPG", ofType: nil)!)!)
-                }
+//            imageSource = (1...29).map {
+//                JSPictureConfig(image: UIImage(contentsOfFile: Bundle.main.path(forResource: "\($0).JPG", ofType: nil)!)!)
+//            }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -104,14 +104,14 @@ class ViewController: UIViewController {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: CustomCell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CustomCell
         cell.contentView.backgroundColor = UIColor.lightGray
-        cell.imageView.image = imageSource[indexPath.row].image
-//        cell.imageView.kf.setImage(with: URL(string: urlSource[indexPath.row]))
+//        cell.imageView.image = imageSource[indexPath.row].image
+        cell.imageView.kf.setImage(with: URL(string: urlSource[indexPath.row]))
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.indexPath = indexPath
-        a = JSPictureViewer(index: indexPath.row, source: .image, data: imageSource, delegate: self)
+        a = JSPictureViewer(index: indexPath.row, source: .url, data: imageSource, delegate: self)
             .display(view)
         
         isHidden = true
@@ -130,6 +130,7 @@ class ViewController: UIViewController {
         imageView = UIImageView(frame: bounds)
         imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFill
+        imageView.layer.cornerRadius = bounds.width / 2
         addSubview(imageView)
     }
     

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import YYWebImage
+import Kingfisher
 
 protocol JSPictureCellDelegate: class {
     /// 关闭图片浏览器
@@ -52,22 +52,20 @@ class JSPictureCell: UICollectionViewCell {
             progressView.isHidden = false
             progressView.progress = 0.05
             
-            imageView.yy_cancelCurrentImageRequest()
-            imageView.yy_setImage(with: URL(string: url!)!, placeholder: placeholderImage, options: .showNetworkActivity, progress: { [weak self] receivedSize, expectedSize in
-                self?.progressView.progress = max(CGFloat(receivedSize) / CGFloat(expectedSize), 0.05)
-            }, transform: nil) { [weak self] image, url, fromType, stage, error in
-                if error != nil {
+            imageView.kf.cancelDownloadTask()
+            imageView.kf.setImage(with: URL(string: url!), placeholder: placeholderImage, options: nil, progressBlock: { [weak self] (receivedSize, totalSize) in
+                self?.progressView.progress = max(CGFloat(receivedSize) / CGFloat(totalSize), 0.05)
+            }) { [weak self] (image, error, _, _) in
+                if let _ = error {
                     self?.progressView.showError()
                 }else {
                     guard let `self` = self else { return }
-                    if stage == .finished {
-                        if image != nil {
-                            self.progressView.isHidden = true
-                            self.finalImage = self.imageView.image
-                        }else {
-                            self.progressView.showError()
-                        }
+                    if image != nil {
+                        self.progressView.isHidden = true
+                        self.finalImage = self.imageView.image
                         self.progressView.progress = 1
+                    }else {
+                        self.progressView.showError()
                     }
                 }
             }
@@ -84,8 +82,8 @@ class JSPictureCell: UICollectionViewCell {
     
     // MARK: - UI
     
-    lazy var imageView: YYAnimatedImageView = {
-        let imageView: YYAnimatedImageView = YYAnimatedImageView(frame: self.bounds)
+    lazy var imageView: AnimatedImageView = {
+        let imageView: AnimatedImageView = AnimatedImageView(frame: self.bounds)
         imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFill
         imageView.isUserInteractionEnabled = true
@@ -171,7 +169,7 @@ extension JSPictureCell {
         offset = .zero
         if let _ = url {
             progressView.isHidden = true
-            imageView.yy_cancelCurrentImageRequest()
+            imageView.kf.cancelDownloadTask()
         }
         delegate?.closeDisplay(cell: self)
     }
@@ -251,7 +249,7 @@ extension JSPictureCell: UIScrollViewDelegate {
                     isClose = false
                     if let _ = url {
                         progressView.isHidden = true
-                        imageView.yy_cancelCurrentImageRequest()
+                        imageView.kf.cancelDownloadTask()
                     }
                     scrollView.setContentOffset(offset, animated: false)
                     delegate?.closeDisplay(cell: self)

@@ -44,7 +44,7 @@ public protocol JSPictureViewerDelegate: class {
 }
 
 /// 因为现在默认是实现了这些方法都表明这些方法是可选的
-extension JSPictureViewerDelegate {
+public extension JSPictureViewerDelegate {
     func animationRect(index: Int) -> CGRect? { return nil }
     func animationSize(index: Int) -> CGSize? { return nil }
     func placeholderImage(_ index: Int) -> UIImage? { return nil }
@@ -97,6 +97,7 @@ public class JSPictureViewer: UIView {
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.isPagingEnabled = true
         collectionView.backgroundColor = UIColor.clear
+        collectionView.alwaysBounceHorizontal = true
         collectionView.setContentOffset(CGPoint(x: CGFloat(self.currentPage) * collectionView.frame.width, y: 0), animated: false)
         collectionView.register(JSPictureCell.self, forCellWithReuseIdentifier: self.identifier)
 //        if #available(iOS 11.0, *) {
@@ -143,12 +144,13 @@ extension JSPictureViewer {
         collectionView.layoutIfNeeded()
     }
     
-    /// 图片浏览器显示动画
+    /// 图片浏览器显示动画，editBlock是对动画过程中的imageView进行处理
     @discardableResult
     public func display(_ superview: UIView) -> Self {
         guard let cell = collectionView.cellForItem(at: IndexPath(row: currentPage, section: 0)) as? JSPictureCell else { return self }
         superview.addSubview(self)
         
+        /// 即将进入浏览器的回调
         delegate?.viewerWillAnimation(index: currentPage, isAppear: true)
         
         switch source {

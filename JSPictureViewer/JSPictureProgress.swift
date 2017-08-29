@@ -16,7 +16,9 @@ class JSPictureProgress: UIView {
         didSet {
             sectorLayer.isHidden = false
             errorLayer.isHidden = true
-            sectorLayer.strokeEnd = progress
+            UIView.animate(withDuration: 3) {
+                self.sectorLayer.strokeEnd = self.progress
+            }
         }
     }
     
