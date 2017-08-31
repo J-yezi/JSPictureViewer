@@ -212,20 +212,14 @@ extension JSPictureViewer: UICollectionViewDelegate, UICollectionViewDataSource 
     public func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         /// 避免出现重用
         /// 重用的时候避免之前已经放大过
-        let c = cell as! JSPictureCell
-        c.scrollView.zoomScale = 1
-        c.finalImage = nil
-        c.placeholderImage = nil
+        (cell as! JSPictureCell).scrollView.zoomScale = 1
     }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as! JSPictureCell
         cell.indexPath = indexPath
         cell.delegate = self
-        
-        if indexPath.row == 2 {
-            
-        }
+        cell.reset()
         
         switch source {
         case .url:

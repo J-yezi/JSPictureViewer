@@ -191,6 +191,10 @@ extension JSPictureCell {
         }
     }
     
+    func reset() {
+        finalImage = nil
+        placeholderImage = nil
+    }
 }
 
 extension JSPictureCell: UIScrollViewDelegate {
