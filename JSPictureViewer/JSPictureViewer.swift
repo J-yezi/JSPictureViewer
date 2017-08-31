@@ -166,8 +166,10 @@ extension JSPictureViewer {
                 })
             }else {
                 /// 没有默认图的时候就直接渐隐出来
+                cell.alpha = 0
                 UIView.animate(withDuration: self.duration, animations: {
                     self.backgroundColor = UIColor.black
+                    cell.alpha = 1
                 }, completion: { _ in
                     self.delegate?.viewerDidAnimation(index: self.currentPage, isAppear: true, image: nil)
                     cell.doProgress(hidden: false)
