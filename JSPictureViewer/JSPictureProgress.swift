@@ -65,13 +65,6 @@ class JSPictureProgress: UIView {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    deinit {
-        if isNeedLog {
-            print("\(self.classForCoder.description()) - deinit")
-        }
-    }
-
 }
 
 extension JSPictureProgress {

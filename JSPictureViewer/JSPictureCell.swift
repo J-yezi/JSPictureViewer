@@ -96,9 +96,9 @@ class JSPictureCell: UICollectionViewCell {
         scrollView.showsVerticalScrollIndicator = false
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.maximumZoomScale = 2
-//        if #available(iOS 11.0, *) {
-//            scrollView.contentInsetAdjustmentBehavior = .never
-//        }
+        if #available(iOS 11.0, *) {
+            scrollView.contentInsetAdjustmentBehavior = .never
+        }
         return scrollView
     }()
     fileprivate lazy var progressView: JSPictureProgress = {
@@ -127,13 +127,6 @@ class JSPictureCell: UICollectionViewCell {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    deinit {
-        if isNeedLog {
-            print("\(self.classForCoder.description()) - deinit")
-        }
-    }
-
 }
 
 extension JSPictureCell {

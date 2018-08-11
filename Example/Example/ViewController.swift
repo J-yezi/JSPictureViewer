@@ -30,6 +30,9 @@ class ViewController: UIViewController {
         collectionView.backgroundColor = UIColor.white
         collectionView.delegate = self
         collectionView.dataSource = self
+        if #available(iOS 11.0, *) {
+            collectionView.contentInsetAdjustmentBehavior = .never
+        }
         return collectionView
     }()
     var a: JSPictureViewer?
@@ -81,17 +84,17 @@ class ViewController: UIViewController {
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .default
-    }
-    
-    override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {
-        return .slide
-    }
-    
-    override var prefersStatusBarHidden: Bool {
-        return isHidden
-    }
+//    override var preferredStatusBarStyle: UIStatusBarStyle {
+//        return .default
+//    }
+//    
+//    override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {
+//        return .slide
+//    }
+//    
+//    override var prefersStatusBarHidden: Bool {
+//        return isHidden
+//    }
     
  }
  
@@ -130,7 +133,6 @@ class ViewController: UIViewController {
         imageView = UIImageView(frame: bounds)
         imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFill
-        imageView.layer.cornerRadius = bounds.width / 2
         addSubview(imageView)
     }
     

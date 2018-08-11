@@ -53,8 +53,6 @@ public extension JSPictureViewerDelegate {
     func viewerDidAnimation(index: Int, isAppear: Bool, image: UIImage?) {}
 }
 
-let isNeedLog: Bool = false
-
 public class JSPictureViewer: UIView {
     
     // MARK: - Data
@@ -127,13 +125,6 @@ public class JSPictureViewer: UIView {
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    deinit {
-        if isNeedLog {
-            print("\(self.classForCoder.description()) - deinit")
-        }
-    }
-
 }
 
 extension JSPictureViewer {

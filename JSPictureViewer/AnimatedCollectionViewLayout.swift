@@ -12,12 +12,6 @@ class AnimatedCollectionViewLayout: UICollectionViewFlowLayout {
     
     public var animator: ParallaxAttributesAnimator = ParallaxAttributesAnimator()
     
-    deinit {
-        if isNeedLog {
-            print("\(self.classForCoder.description()) - deinit")
-        }
-    }
-    
     override func prepare() {
         super.prepare()
         
