@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
     s.name         = 'JSPictureViewer'
-    s.version      = '0.0.8'
+    s.version      = '0.0.9'
     s.summary      = '图片浏览器'
     s.homepage     = 'https://github.com/J-yezi/JSPictureViewer'
     s.license      = 'MIT'
@@ -12,6 +12,6 @@ Pod::Spec.new do |s|
 
     s.source_files  = 'JSPictureViewer/**/*.swift'
     s.framework = 'UIKit'
-    s.dependency 'Kingfisher', '~> 4.8.1'
+    s.dependency 'Kingfisher', '>= 4.10.0'
 
 end

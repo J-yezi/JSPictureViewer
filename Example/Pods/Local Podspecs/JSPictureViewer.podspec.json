@@ -1,6 +1,6 @@
 {
   "name": "JSPictureViewer",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "summary": "图片浏览器",
   "homepage": "https://github.com/J-yezi/JSPictureViewer",
   "license": "MIT",
@@ -9,7 +9,7 @@
   },
   "source": {
     "git": "https://github.com/J-yezi/JSPictureViewer.git",
-    "tag": "0.0.8"
+    "tag": "0.0.9"
   },
   "platforms": {
     "ios": "8.0"
@@ -18,7 +18,7 @@
   "frameworks": "UIKit",
   "dependencies": {
     "Kingfisher": [
-      "~> 4.8.1"
+      ">= 4.10.0"
     ]
   }
 }

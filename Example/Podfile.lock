@@ -1,7 +1,7 @@
 PODS:
-  - JSPictureViewer (0.0.8):
-    - Kingfisher (~> 4.8.1)
-  - Kingfisher (4.8.1)
+  - JSPictureViewer (0.0.9):
+    - Kingfisher (>= 4.10.0)
+  - Kingfisher (4.10.0)
 
 DEPENDENCIES:
   - JSPictureViewer (from `../`)
@@ -15,8 +15,8 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  JSPictureViewer: 5166e096875f611bf82983ce1621445eff0a8488
-  Kingfisher: 868c1149679a7ab6869be118faa9b5aed154aaf0
+  JSPictureViewer: 1b25fbd9d666d5952c886b26843cf284e0db7bb4
+  Kingfisher: 43c4b802d8b5256cf1f4379e9cd10b329be6d3e2
 
 PODFILE CHECKSUM: 7325288de4cc95d2c54c3b51834e5286285da557
 

@@ -98,9 +98,9 @@ public class JSPictureViewer: UIView {
         collectionView.alwaysBounceHorizontal = true
         collectionView.setContentOffset(CGPoint(x: CGFloat(self.currentPage) * collectionView.frame.width, y: 0), animated: false)
         collectionView.register(JSPictureCell.self, forCellWithReuseIdentifier: self.identifier)
-//        if #available(iOS 11.0, *) {
-//            collectionView.contentInsetAdjustmentBehavior = .never
-//        }
+        if #available(iOS 11.0, *) {
+            collectionView.contentInsetAdjustmentBehavior = .never
+        }
         return collectionView
     }()
     
